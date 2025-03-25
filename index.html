@@ -9,6 +9,7 @@
     <style>
         body {
             background-size: cover;
+            background-color : gray;
             background-position: center;
             transition: background-image 0.5s ease-in-out;
             height: 100vh;
@@ -17,16 +18,30 @@
             align-items: center;
             flex-direction: column;
         }
+        .header-box {
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
         .card {
             background: rgba(255, 255, 255, 0.8);
             border-radius: 10px;
             padding: 20px;
         }
+        .temperature, .local-time {
+            font-size: 24px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <div class="container text-center">
-        <h2>Hava Durumu Uygulaması</h2>
+        <div class="header-box">
+            <h2>Hava Durumu Uygulaması</h2>
+        </div>
         <div class="input-group mb-3">
             <input type="text" id="city" class="form-control" placeholder="Şehir Girin">
             <button class="btn btn-primary" onclick="getWeather()">Sorgula</button>
@@ -55,8 +70,8 @@
                 document.getElementById("result").innerHTML = `
                     <div class='card'>
                         <h3>${city.toUpperCase()}</h3>
-                        <p><strong>Sıcaklık:</strong> ${temperature}°C</p>
-                        <p><strong>Yerel Saat:</strong> ${new Date().toLocaleString("tr-TR", { timeZone: weatherData.timezone })}</p>
+                        <p class="temperature"><strong>Sıcaklık:</strong> ${temperature}°C</p>
+                        <p class="local-time"><strong>Yerel Saat:</strong> ${new Date().toLocaleString("tr-TR", { timeZone: weatherData.timezone })}</p>
                     </div>
                 `;
                 
@@ -70,13 +85,13 @@
         function updateBackground(temp) {
             let bgImage = "";
             if (temp <= 0) {
-                bgImage = "url('https://source.unsplash.com/1600x900/?snowy')";
+                bgImage = "url('https://img.freepik.com/free-photo/christmas-background-with-snow_1048-3135.jpg?t=st=1742932743~exp=1742936343~hmac=924f26a7d6a54484924f3f663201f3195d8e9272b3011bbe74da0edcc0e35230&w=1380')";
             } else if (temp > 0 && temp <= 15) {
-                bgImage = "url('https://source.unsplash.com/1600x900/?clouds')";
+                bgImage = "url('https://img.freepik.com/free-photo/white-cloud-sky_1323-242.jpg?t=st=1742932828~exp=1742936428~hmac=81d848666f8e35d61b3e190beacc9f09398fa166c6033056068424a8485c5dd8&w=1380')";
             } else if (temp > 15 && temp <= 25) {
-                bgImage = "url('https://source.unsplash.com/1600x900/?sunny')";
+                bgImage = "url('https://img.freepik.com/free-photo/beautiful-sky_8327-253.jpg?t=st=1742932885~exp=1742936485~hmac=c99eeb5f82bdc51c3540dec351151d6ebc281d48ed600b3057acd92c479dd84e&w=1380')";
             } else {
-                bgImage = "url('https://source.unsplash.com/1600x900/?hot-weather')";
+                bgImage = "url('https://img.freepik.com/free-photo/low-angle-shot-green-leafed-tree-bright-sky_181624-19264.jpg?t=st=1742933162~exp=1742936762~hmac=42874a0a9c95f231dbab8c694ad2fbe4a105c98e142ac075717bc4ba784675af&w=1380')";
             }
             document.body.style.backgroundImage = bgImage;
         }
